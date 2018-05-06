@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   forma: FormGroup;
 
   constructor(
-    public _usuaioService: UsuarioService,
+    public _usuarioService: UsuarioService,
     public router: Router
   ) { }
 
@@ -56,6 +56,11 @@ export class RegisterComponent implements OnInit {
       password2: '123456',
       condiciones: true
     });
+
+    if (this._usuarioService.estaLogueado()) {
+      console.log(this._usuarioService.estaLogueado());
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   registrarUsuario() {
@@ -75,7 +80,7 @@ export class RegisterComponent implements OnInit {
       this.forma.value.password
     );
 
-    this._usuaioService.crearUsuario( usuario )
+    this._usuarioService.crearUsuario( usuario )
       .subscribe(resp => this.router.navigate(['/login']));
   }
 

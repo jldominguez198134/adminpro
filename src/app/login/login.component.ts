@@ -32,6 +32,11 @@ export class LoginComponent implements OnInit {
     if ( this.email.length > 1 ) {
       this.recuerdame = true;
     }
+
+    if (this._usuarioService.estaLogueado()) {
+      console.log(this._usuarioService.estaLogueado());
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   googleInit() {
